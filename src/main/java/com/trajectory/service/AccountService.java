@@ -8,5 +8,4 @@ public interface AccountService {
 	
 	public Account login(String username, String password);
 	
-	public Account changePassword(Account account, String newPassword);
 }

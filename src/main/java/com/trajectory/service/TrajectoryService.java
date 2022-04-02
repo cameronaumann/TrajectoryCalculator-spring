@@ -9,7 +9,7 @@ public interface TrajectoryService {
 
 	public List<Trajectory> getTrajectories(Account account);
 	
-	public Trajectory addTrajectory(Trajectory trajectory);
+	public boolean addTrajectory(Trajectory trajectory);
 	
 	public boolean removeTrajectory(Trajectory trajectory);
 

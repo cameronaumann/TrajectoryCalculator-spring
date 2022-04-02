@@ -18,18 +18,11 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account addAccount(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		return accRepo.save(new Account());
 	}
 
 	@Override
 	public Account login(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Account changePassword(Account account, String newPassword) {
 		// TODO Auto-generated method stub
 		return null;
 	}
