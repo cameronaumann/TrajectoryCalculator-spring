@@ -2,13 +2,15 @@ package com.trajectory.controller;
 
 
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -45,7 +47,7 @@ public class MainController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Missing registration info");
 		}
 		Account acc = convertToEntity(accountDto);
-		return accServ.addAccount(acc.getUsername(),acc.getPassword());
+		return accServ.addAccount(acc.getUsername(), acc.getPassword());
 	}
 	
 	@GetMapping("/account/login")
@@ -55,21 +57,29 @@ public class MainController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Missing login credentials");
 		}
 		Account acc = convertToEntity(accountDto);
-		return accServ.login(acc.getUsername(),acc.getPassword());
+		return accServ.login(acc.getUsername(), acc.getPassword());
 	}
 	
 	@PostMapping("/addTrajectory")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public boolean addTrajectory(@RequestBody Trajectory trajectory) {
+	public void addTrajectory(@RequestBody Trajectory trajectory) {
 		if (trajectory.getDate() == null || trajectory.getAngle() == null || trajectory.getHeight() == null || trajectory.getVelocity() == null || trajectory.getAccount() == null) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Missing trajectory details");
 		}
-		return trajServ.addTrajectory(trajectory);
+		trajServ.addTrajectory(trajectory);
 	}
 	
+	@PostMapping("/removeTrajectory")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public void removeTrajectory(@RequestBody Trajectory trajectory) {
+		trajServ.removeTrajectory(trajectory);
+		
+	}
 	
-	
-	
-	
+	@GetMapping("/displayTrajectories")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public @ResponseBody List<Trajectory> displayTrajectories(Account acc) {
+		return trajServ.getTrajectories(acc);
+	}
 
 }

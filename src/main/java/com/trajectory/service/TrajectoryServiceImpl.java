@@ -21,21 +21,18 @@ public class TrajectoryServiceImpl implements TrajectoryService {
 	
 	@Override
 	public List<Trajectory> getTrajectories(Account account) {
-		// TODO Auto-generated method stub
-		return null;
+		return trajRepo.findAllByAcccountId(account.getAccountId());
 	}
 
 	@Override
-	public boolean addTrajectory(Trajectory trajectory) {
-		
-		return true;
+	public void addTrajectory(Trajectory trajectory) {
+		trajRepo.save(trajectory);
 		
 	}
 
 	@Override
-	public boolean removeTrajectory(Trajectory trajectory) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public void removeTrajectory(Trajectory trajectory) {
+		trajRepo.delete(trajectory);
+	}	
 
 }

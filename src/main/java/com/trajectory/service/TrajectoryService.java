@@ -9,8 +9,8 @@ public interface TrajectoryService {
 
 	public List<Trajectory> getTrajectories(Account account);
 	
-	public boolean addTrajectory(Trajectory trajectory);
+	public void addTrajectory(Trajectory trajectory);
 	
-	public boolean removeTrajectory(Trajectory trajectory);
+	void removeTrajectory(Trajectory trajectory);
 
 }
