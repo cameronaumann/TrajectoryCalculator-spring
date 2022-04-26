@@ -21,7 +21,7 @@ public class TrajectoryServiceImpl implements TrajectoryService {
 	
 	@Override
 	public List<Trajectory> getTrajectories(Account account) {
-		return trajRepo.findAllByAcccountId(account.getAccountId());
+		return trajRepo.findAllByAccount(account);
 	}
 
 	@Override

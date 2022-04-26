@@ -26,38 +26,38 @@ public class MainController {
 	
 	private AccountService accServ;
 	private TrajectoryService trajServ;
-	private ModelMapper mapper;
+//	private ModelMapper mapper;
 	
 	
 	@Autowired
-	public MainController(AccountService accServ ,TrajectoryService trajServ, ModelMapper mapper) {
+	public MainController(AccountService accServ ,TrajectoryService trajServ /*, ModelMapper mapper*/) {
 		this.accServ = accServ;
-		this.mapper = mapper;
+//		this.mapper = mapper;
 		this.trajServ = trajServ;
 	}
 	
-	private Account convertToEntity(AccountDto accountDto) {
-		return mapper.map(accountDto, Account.class);
-	}
+//	private Account convertToEntity(AccountDto accountDto) {
+//		return mapper.map(accountDto, Account.class);
+//	}
 	
 	@PostMapping("/account/newAccount")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Account newAccount(@RequestBody AccountDto accountDto) {
-		if (accountDto.getUsername() == null || accountDto.getPassword() == null ) {
+	public Account newAccount(@RequestBody Account account) {
+		if (account.getUsername() == null || account.getPassword() == null ) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Missing registration info");
 		}
-		Account acc = convertToEntity(accountDto);
-		return accServ.addAccount(acc.getUsername(), acc.getPassword());
+//		Account acc = convertToEntity(account);
+		return accServ.addAccount(account.getUsername(), account.getPassword());
 	}
 	
 	@GetMapping("/account/login")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public Account login(@RequestBody AccountDto accountDto) {
-		if (accountDto.getUsername() == null || accountDto.getPassword() == null ) {
+	public Account login(@RequestBody Account account) {
+		if (account.getUsername() == null || account.getPassword() == null ) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Missing login credentials");
 		}
-		Account acc = convertToEntity(accountDto);
-		return accServ.login(acc.getUsername(), acc.getPassword());
+//		Account acc = convertToEntity(accountDto);
+		return accServ.login(account.getUsername(), account.getPassword());
 	}
 	
 	@PostMapping("/addTrajectory")
