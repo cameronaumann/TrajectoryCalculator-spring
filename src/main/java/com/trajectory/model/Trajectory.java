@@ -31,7 +31,7 @@ public class Trajectory {
 	Double velocity;
 	
 	@ManyToOne
-	@JoinColumn(referencedColumnName =  "accountId")
+	@JoinColumn(referencedColumnName =  "id")
 	Account account;
 	
 	

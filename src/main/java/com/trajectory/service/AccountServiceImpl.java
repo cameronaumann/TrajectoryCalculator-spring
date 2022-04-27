@@ -23,8 +23,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account login(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		return accRepo.findByUsernameAndPassword(username, password);
 	}
 	
 	

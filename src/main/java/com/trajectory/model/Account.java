@@ -22,7 +22,7 @@ public class Account {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer accountId;
+	Integer id;
 	String username;
 	String password;
 	
